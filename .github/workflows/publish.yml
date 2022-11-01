@@ -1,6 +1,7 @@
 name: Push to NuGet
 
 on:
+  workflow_dispatch
   push:
     branches: [ main ]
   pull_request:
@@ -26,7 +27,7 @@ jobs:
 
     # Publish
     - name: Publish Core
-      uses: brandedoutcast/publish-nuget@v2.5.5
+      uses: alirezanet/publish-nuget@v3.0.4
       with:
         # Filepath of the project to be packaged, relative to root of repository
         PROJECT_FILE_PATH: ./src/RndDotNet.HeadHunter.Client/RndDotNet.HeadHunter.Client.csproj
