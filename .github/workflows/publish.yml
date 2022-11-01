@@ -1,0 +1,33 @@
+name: Push to NuGet
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ maint ]    
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Setup .NET SDK
+      uses: actions/setup-dotnet@v1
+
+    # Build
+    - name: Install dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --configuration Release --no-restore
+    - name: Test
+      run: dotnet test --no-restore --verbosity normal
+
+    # Publish
+    - name: Publish Core
+      uses: brandedoutcast/publish-nuget@v2.5.5
+      with:
+        # Filepath of the project to be packaged, relative to root of repository
+        PROJECT_FILE_PATH: ./src/RndDotNet.HeadHunter.Client/RndDotNet.HeadHunter.Client.csproj
+        NUGET_KEY: ${{ secrets.NUGET_API_KEY }}
