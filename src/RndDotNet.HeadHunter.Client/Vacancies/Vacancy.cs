@@ -248,4 +248,10 @@ public class Vacancy
 	/// </summary>
 	[JsonPropertyName("professional_roles")]
 	public VacancyProfessionalRole[] ProfessionalRoles { get; set; }
+	
+	/// <summary>
+	/// Info on employer's company (object) or (Null-object (any or null)).
+	/// </summary>
+	[JsonPropertyName("employer")]
+	public VacancyEmployer Employer { get; set; }
 }

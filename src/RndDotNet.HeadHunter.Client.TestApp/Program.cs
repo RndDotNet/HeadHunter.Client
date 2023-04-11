@@ -32,7 +32,7 @@ var professionalRoles = await client.ProfessionalRoles.GetAllProfessionalRoles()
 var vacancy = await client.Vacancies.GetVacancy("67485637");
 
 // Search vacancies by parameters
-var getVacanciesParams = new GetVacanciesQueryParams()
+var getVacanciesParams = new GetVacanciesQueryParams
 {
 	SearchField = "name", // vacancy name
 	Text = "C#",
@@ -41,3 +41,5 @@ var getVacanciesParams = new GetVacanciesQueryParams()
 	PerPage = 100 // Results per page
 };
 var vacancies = await client.Vacancies.GetVacancies(getVacanciesParams);
+
+Console.WriteLine();
