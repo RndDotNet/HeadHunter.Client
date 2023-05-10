@@ -42,4 +42,6 @@ var getVacanciesParams = new GetVacanciesQueryParams
 };
 var vacancies = await client.Vacancies.GetVacancies(getVacanciesParams);
 
+var employer = await client.Employers.GetEmployer("41862");
+
 Console.WriteLine();

@@ -1,6 +1,7 @@
 ﻿using Refit;
 using RndDotNet.HeadHunter.Client.Areas;
 using RndDotNet.HeadHunter.Client.Authentication;
+using RndDotNet.HeadHunter.Client.Employers;
 using RndDotNet.HeadHunter.Client.Industries;
 using RndDotNet.HeadHunter.Client.ProfessionalRoles;
 using RndDotNet.HeadHunter.Client.Vacancies;
@@ -37,8 +38,14 @@ public class HeadHunterApiClientFactory
 		var industriesClient = RestService.For<IHeadHunterApiIndustriesClient>(httpClient);
 		var professionalRolesClient = RestService.For<IHeadHunterApiProfessionalRolesClient>(httpClient);
 		var vacanciesClient = RestService.For<IHeadHunterApiVacanciesClient>(httpClient);
+		var employersClient = RestService.For<IHeadHunterApiEmployersClient>(httpClient);
 
-		return new HeadHunterApiClient(areasClient, industriesClient, professionalRolesClient, vacanciesClient);
+		return new HeadHunterApiClient(
+			areasClient, 
+			industriesClient, 
+			professionalRolesClient, 
+			vacanciesClient,
+			employersClient);
 	}
 
 	private static async Task<string> RetrieveAccessToken(HeadHunterApiClientSettings settings)
